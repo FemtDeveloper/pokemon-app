@@ -1,13 +1,13 @@
-import { Spacer, Text, useTheme } from "@nextui-org/react";
+import { Spacer, Text, useTheme, Link } from "@nextui-org/react";
 import Image from "next/image";
-import React from "react";
+import NextLink from "next/link";
 
 export const Navbar = () => {
   const { theme } = useTheme();
   return (
     <div
       style={{
-        backgroundColor: theme?.colors.gray700.value,
+        backgroundColor: theme?.colors.gray900.value,
         padding: "0 20px 0",
         display: "flex",
         flexDirection: "row",
@@ -22,16 +22,24 @@ export const Navbar = () => {
         height={70}
         alt="Icono Pokemon"
       />
-      <Text color="white" h2>
-        P
-      </Text>
-      <Text color="white" h3>
-        ókemon
-      </Text>
+      <NextLink href="/" passHref>
+        <Link>
+          <Text color="white" h2>
+            P
+          </Text>
+          <Text color="white" h3>
+            ókemon
+          </Text>
+        </Link>
+      </NextLink>
       <Spacer css={{ flex: "1" }} />
-      <Text color="white" h3>
-        Favoritos
-      </Text>
+      <NextLink href="/favorites" passHref>
+        <Link>
+          <Text color="white" h3>
+            Favoritos
+          </Text>
+        </Link>
+      </NextLink>
     </div>
   );
 };

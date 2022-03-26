@@ -1,23 +1,23 @@
+import { Card, Grid, Row, Text } from "@nextui-org/react";
 import { NextPage, GetStaticProps } from "next";
 import { pokeApi } from "../api";
 import { MainLayout } from "../Components/layouts";
-import { Pokelist, SmallPokemon } from "../interfaces";
+import { PokemonCard } from "../Components/pokemon";
+import { Pokelist, SinglePokemon } from "../interfaces";
 
 interface Props {
-  pokemons: SmallPokemon[];
+  pokemons: SinglePokemon[];
 }
 
-const HomePage: NextPage<Props> = ({ pokemons }) => {
-  console.log(pokemons);
-
+const PokemonPage: NextPage<Props> = ({ pokemons }) => {
   return (
     <>
       <MainLayout title="Listado de pokemons">
-        <ul>
-          {pokemons.map((poke) => (
-            <li key={poke.id}>{`Id: ${poke.id} -   ${poke.name}`}</li>
+        <Grid.Container gap={2} justify="flex-start">
+          {pokemons.map((pokemon) => (
+            <PokemonCard pokemon={pokemon} key={pokemon.id} />
           ))}
-        </ul>
+        </Grid.Container>
       </MainLayout>
     </>
   );
@@ -26,7 +26,7 @@ const HomePage: NextPage<Props> = ({ pokemons }) => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await pokeApi.get<Pokelist>("/pokemon?limit=151");
 
-  const pokemons: SmallPokemon[] = data.results.map((poke, i) => ({
+  const pokemons: SinglePokemon[] = data.results.map((poke, i) => ({
     ...poke,
     id: i + 1,
     image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
@@ -41,4 +41,4 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   };
 };
 
-export default HomePage;
+export default PokemonPage;

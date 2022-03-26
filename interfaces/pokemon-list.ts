@@ -2,10 +2,10 @@ export interface Pokelist {
   count: number;
   next?: string;
   previous?: string;
-  results: SmallPokemon[];
+  results: SinglePokemon[];
 }
 
-export interface SmallPokemon {
+export interface SinglePokemon {
   name: string;
   url: string;
   id: number;
