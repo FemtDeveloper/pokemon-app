@@ -35,7 +35,7 @@ const HomePage: NextPage<Props> = ({ pokemon }) => {
   };
 
   return (
-    <MainLayout title={`${pokemon.name} id:${pokemon.id.toString()}`}>
+    <MainLayout title={`${pokemon.name}`}>
       <Grid.Container css={{ marginTop: "5px" }} gap={2}>
         <Grid xs={12} sm={4}>
           <Card hoverable css={{ padding: "30px" }}>

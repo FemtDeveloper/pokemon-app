@@ -33,5 +33,3 @@ export const MainLayout: FC<Props> = ({ children, title }) => {
     </>
   );
 };
-
-// export default MainLayout;
